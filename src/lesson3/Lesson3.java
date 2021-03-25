@@ -121,10 +121,10 @@ public class Lesson3 {
 
     public static void guessArray() {
         double[] array = new double[11];
-        Random random = new Random();
+
 
         for (int i = 0; i < array.length; i++) {  // не понял ка кзадать интервал [-1;1]
-            array[i] = random.nextDouble();
+            array[i] = Math.random() * 3 - 1;
         }
         System.out.println(Arrays.toString(array));
 
