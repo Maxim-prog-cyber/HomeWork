@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 
 public class Lesson4 {
     public static void main(String[] args) {
-        task5();
+        task1();
+
 
     }
 
@@ -16,6 +17,7 @@ public class Lesson4 {
         Scanner scanner = new Scanner(System.in);
         int n = Integer.parseInt(scanner.nextLine());
         String[] array = new String[n];
+        System.out.println(Arrays.toString(array));
         int size = 0;
         int index = 0;
         while (true) {
