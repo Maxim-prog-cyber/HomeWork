@@ -5,7 +5,7 @@ public class Application {
         Writer writer1 = new Writer("Михаил","Лермонтов");
         Writer writer2 = new Writer("Михаил","Булгагов");
 
-        Book book1 = new Book("Герой нашего времени",300,1940,new Writer[]{writer1});
+        Book book1 = new Book("Герой нашего времени",300,1940, new Writer[]{writer1});
         Book book2 = new Book("Мастер и маршарита",500,1966,new Writer[]{writer2});
 
         Repository repository1 = new Repository();
