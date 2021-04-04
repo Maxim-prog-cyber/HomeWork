@@ -4,6 +4,6 @@ public class Chicken extends Pets{
 
 
     public Chicken(String type, int weight, int speed, int health) {
-        super(type, weight, speed, health,5, true);
+        super(type, weight, speed, health,Settings.FIRST_RESOURCES_CHICKEN, true);
     }
 }
