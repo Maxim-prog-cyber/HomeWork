@@ -24,10 +24,6 @@ public class WildAnimal {
         this.name = name;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
     public void setWeight(int weight) {
         if (weight <= 0) throw new IllegalArgumentException("Вес не может быть меньше или равен 0");
         this.weight = weight;
@@ -38,9 +34,6 @@ public class WildAnimal {
         this.speed = speed;
     }
 
-    public int getPower() {
-        return power;
-    }
 
     public void setPower(int power) {
         if (power <= 0) throw new IllegalArgumentException("сила не может быть меньше или равен 0");
