@@ -62,7 +62,7 @@ public class Farmer {
     public void feedAnimals(Pets[] pets) {
         for (int i = 0; i < pets.length; i++) {
             if (pets[i].getHealth() != 0) {
-                pets[i].setHealth(Settings.MAX_HEALTH);//пополнил до максимального не изначального здовроья
+                pets[i].setHealth(pets[i].getHealth() + 1);//пополнил до максимального не изначального здовроья
             }
         }
         System.out.println(Arrays.toString(pets));

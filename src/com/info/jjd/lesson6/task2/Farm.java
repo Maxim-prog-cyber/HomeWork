@@ -29,7 +29,7 @@ public class Farm {
         System.out.println();
     }
 
-    public void passDay(Farmer farmer, WildAnimal[] wildAnimals) {
+    public void passDay( WildAnimal[] wildAnimals) {
         System.out.println("массив диких животных " + Arrays.toString(wildAnimals));
 
         farmer.setResources(farmer.getResources() - 2);
