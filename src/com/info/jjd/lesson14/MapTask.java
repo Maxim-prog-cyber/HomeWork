@@ -67,7 +67,7 @@ public class MapTask {
                 "uncover many web sites still uncover in their infancy Various versions uncover have evolved over the years uncover sometimes by accident" +
                 " sometimes on purpose injected humour and the like";
 //        frequencyWord("use", text);
-
+        topTenWords(text);
 
 
     }
@@ -133,7 +133,7 @@ public class MapTask {
         System.out.println("слово " + temp + "встречается в тексте с частотой: " + result);
     }
 
-//    public static void groupWord(String text) {
+    //    public static void groupWord(String text) {
 //        String[] array = text.split(" ");
 //
 //        HashMap<Integer, ArrayList<String>> listHashMap = new HashMap<>();
@@ -148,35 +148,43 @@ public class MapTask {
 //    }
 //
 //
-//    public static void topTenWords(String text){
-//        String [] arr = text.split(" ");
-//
-//        TreeMap<String,Integer> hashMap = new TreeMap<>();
-//
-//
-//        for (int i = 0; i < arr.length; i++) {
-//            if (hashMap.containsKey(arr[i])){
-//                int count = hashMap.get(arr[i]);
-//                hashMap.put(arr[i],count + 1);
-//            }else hashMap.put(arr[i],1);
-//        }
-//        System.out.println(hashMap);
-//
-//
-//
-//
-//
-//    }
-//
-//    public static class sortValue implements Comparator<Map.Entry<String,Integer>> {
-//        @Override
-//        public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-//            return Integer.compare(o1.getValue(),o2.getValue());
-//        }
-//    }
+    public static void topTenWords(String text) {
+        String[] arr = text.split(" ");
+
+        TreeMap<String, Integer> hashMap = new TreeMap<>();
 
 
+        for (int i = 0; i < arr.length; i++) {
+            if (hashMap.containsKey(arr[i])) {
+                int count = hashMap.get(arr[i]);
+                hashMap.put(arr[i], count + 1);
+            } else hashMap.put(arr[i], 1);
+        }
 
+
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(hashMap.entrySet());
+        Collections.sort(list, new MapTask.sortValue());
+
+        String[] array = new String[10];
+        int index = 0;
+        for (Map.Entry<String, Integer> s : list) {
+            array[index] = s.getKey();
+            index++;
+            if (index == 10) break;
+            System.out.println(s);
+        }
+        System.out.println("самые часто встречаемые слова: " + Arrays.toString(array));
+
+
+    }
+
+    //
+    public static class sortValue implements Comparator<Map.Entry<String, Integer>> {
+        @Override
+        public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+            return Integer.compare(o2.getValue(), o1.getValue());
+        }
+    }
 
 
 }
