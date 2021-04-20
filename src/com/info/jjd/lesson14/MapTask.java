@@ -103,6 +103,8 @@ public class MapTask {
     }
 
 
+    //Задачи по text
+
     public static void frequencyWord(String word, String text) {
         String[] array = text.split(" ");
         String temp = "";
@@ -133,26 +135,52 @@ public class MapTask {
         System.out.println("слово " + temp + "встречается в тексте с частотой: " + result);
     }
 
-    //    public static void groupWord(String text) {
-//        String[] array = text.split(" ");
-//
-//        HashMap<Integer, ArrayList<String>> listHashMap = new HashMap<>();
-//
-//    }
-//
-//    public static class lengthStr implements Comparator<String> {
-//        @Override
-//        public int compare(String o1, String o2) {
-//            return o1.length() - o2.length();
-//        }
-//    }
-//
-//
+    public static HashMap<Integer, ArrayList<String>> groupWords(String text) {
+        String[] array = text.split(" ");
+        HashMap<Integer, ArrayList<String>> arrayListHashMap = new HashMap<>();
+
+        int maxLegth = Integer.MIN_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            maxLegth = Math.max(array[i].length(), maxLegth);//ищем максимальную длину слова в тексте
+        }
+        System.out.println(maxLegth);
+
+
+        for (int i = 1; i <= maxLegth; i++)
+            arrayListHashMap.put(i, new ArrayList<>(Arrays.asList(array)));//создаем колличесвто ключей исходя и максимальной длины слова
+
+        System.out.println(arrayListHashMap);
+
+        int currentLength = 1;
+        int temp = 1;
+
+        for (Map.Entry<Integer, ArrayList<String>> integerArrayListEntry : arrayListHashMap.entrySet()) {
+            if (integerArrayListEntry.getKey() == currentLength) {
+                ArrayList<String> arrayList = new ArrayList<>();
+                for (int i = 0; i < array.length; i++) {
+                    temp = array[i].length();
+                    if (temp == currentLength) {
+                        arrayList.add(array[i]);
+                    }
+                }
+                currentLength++;
+                temp++;
+
+
+                integerArrayListEntry.getValue().clear();
+                integerArrayListEntry.getValue().addAll(arrayList);
+
+            }
+
+        }
+        return arrayListHashMap;
+    }
+
+
     public static void topTenWords(String text) {
         String[] arr = text.split(" ");
 
         TreeMap<String, Integer> hashMap = new TreeMap<>();
-
 
         for (int i = 0; i < arr.length; i++) {
             if (hashMap.containsKey(arr[i])) {
@@ -160,13 +188,12 @@ public class MapTask {
                 hashMap.put(arr[i], count + 1);
             } else hashMap.put(arr[i], 1);
         }
-
-
         List<Map.Entry<String, Integer>> list = new ArrayList<>(hashMap.entrySet());
         Collections.sort(list, new MapTask.sortValue());
 
         String[] array = new String[10];
         int index = 0;
+
         for (Map.Entry<String, Integer> s : list) {
             array[index] = s.getKey();
             index++;
@@ -174,16 +201,41 @@ public class MapTask {
             System.out.println(s);
         }
         System.out.println("самые часто встречаемые слова: " + Arrays.toString(array));
-
-
     }
 
-    //
     public static class sortValue implements Comparator<Map.Entry<String, Integer>> {
         @Override
         public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
             return Integer.compare(o2.getValue(), o1.getValue());
         }
+    }
+
+    public static void frequencyOfEnglishWords(String text) {
+        String d = text.replace(" ","");
+        String[] s = d.split("");
+
+        HashMap<String,Double> arrayListHashMap = new HashMap<>();
+
+        for (int i = 0; i < s.length; i++) {
+            if (arrayListHashMap.containsKey(s[i])){
+                double count = arrayListHashMap.get(s[i]);
+                arrayListHashMap.put(s[i],count + 1);
+            }
+            else arrayListHashMap.put(s[i],1.0);
+
+        }
+        System.out.println(arrayListHashMap);
+
+        int countValue = 0;
+        for (int i = 0; i < s.length; i++) countValue++;//поиск колличества букв
+        System.out.println(countValue);
+
+        for (Map.Entry<String,Double> c: arrayListHashMap.entrySet()) {
+            c.setValue((c.getValue() * 100) / countValue );
+            System.out.println("Буква " + c.getKey() + " вcтречаются с частотой: " + c.getValue() + "%");
+
+        }
+        System.out.println(arrayListHashMap);
     }
 
 
